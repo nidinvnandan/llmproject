@@ -41,16 +41,19 @@ llm = ChatGoogleGenerativeAI(model="gemini-pro",temperature=0.7)
 embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
 @st.cache_resource
-def load_and_split_pdf(pdf_path):
-    loader = PyPDFLoader("ZETA_CORPORATION.pdf")
-
-    docs = loader.load_and_split()
-
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
-    documents = text_splitter.split_documents(docs)
+def load_and_split_pdfs(folder_path):
+    documents = []
+    for file_name in os.listdir(folder_path):
+        if file_name.endswith(".pdf"):
+            file_path = os.path.join(folder_path, file_name)
+            loader = PyPDFLoader(file_path)
+            docs = loader.load_and_split()
+            text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+            documents.extend(text_splitter.split_documents(docs))
     return documents
-pdf_path = "ZETA_CORPORATION.pdf"
-documents = load_and_split_pdf(pdf_path)
+
+folder_path = "llmproject/knowledgedata/"
+documents = load_and_split_pdfs(folder_path)
 @st.cache_resource
 
 def vector():
