@@ -52,7 +52,7 @@ def load_and_split_pdfs(folder_path):
             documents.extend(text_splitter.split_documents(docs))
     return documents
 
-folder_path = "llmproject/knowledgedata/"
+folder_path = "llmproject/knowledge/"
 documents = load_and_split_pdfs(folder_path)
 @st.cache_resource
 
