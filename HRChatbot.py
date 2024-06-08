@@ -91,7 +91,7 @@ question_maker_prompt = ChatPromptTemplate.from_messages(
 
 question_chain = question_maker_prompt | llm | StrOutputParser()
 # Use three sentences maximum and keep the answer concise.\
-qa_system_prompt = """be act like a HR officer an answer the questions to the employye
+qa_system_prompt = """you have act like a HR officer of the ZETA CORPORATION and answer the questions to the employye with the help of the context
 {context}
 Question: {question}
 Helpful Answer:"""
