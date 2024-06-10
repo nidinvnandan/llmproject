@@ -185,7 +185,7 @@ if st.button('➤'):
             if is_valid and risk_score < 0.5:  # Adjust the threshold as needed
                         question=query
             else:
-                st.write("queetion is towards prompt injection")   
+                st.write("question is towards prompt injection")   
     else:
         st.write("question is either invalid or toxic.")
     if question:
